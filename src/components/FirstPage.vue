@@ -11,8 +11,14 @@
           Lorem ipsum dolor sit amet consectetur. Egestas in semper mi porttitor vestibulum nec aliquam. 
           Tempor nisi sagittis arcu tellus orci.
         </p>
-        <button class="bg-white text-purple-800 font-semibold px-6 py-2 rounded hover:bg-purple-100">
-          Explore Now
+        <button class="relative inline-flex items-center justify-center bg-white text-purple-800 font-semibold px-6 py-2 rounded overflow-hidden group">
+          <span class="absolute inset-0 w-full h-full transition-all duration-300 bg-purple-800 transform scale-x-0 group-hover:scale-x-100"></span>
+          <span class="relative text-purple-800 transition-colors duration-300 group-hover:text-white">Explore Now</span>
+          <span class="absolute right-2 transition-transform duration-300 transform group-hover:translate-x-2">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </span>
         </button>
       </div>
       
@@ -35,7 +41,5 @@ export default {
 </script>
 
 <style scoped>
-.main-content {
-  padding-top: 80px; /* Чтобы основной контент не накладывался на header */
-}
+
 </style>
