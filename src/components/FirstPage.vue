@@ -1,10 +1,9 @@
 <template>
   <div class="first-page-container relative z-10 text-white">
-    <!-- Подключение Header компонента -->
-    <Header />
+    <Header @login="toggleAuthForm" />
 
-    <!-- Основной контент страницы -->
     <div class="main-content flex items-center justify-between px-10 py-16 h-screen">
+      <!-- Основний контент сторінки -->
       <div class="text-content max-w-lg">
         <h1 class="text-4xl font-bold mb-4">Discover and Find Your Own Fashion!</h1>
         <p class="mb-6 text-gray-300">
@@ -19,27 +18,38 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </span>
-        </button>
+        </button>      
       </div>
       
       <div class="character-image bg-purple-600 rounded-lg p-4">
         <img src="@/assets/skelet.png" alt="Character" class="w-48 h-48 object-cover rounded" />
       </div>
     </div>
+
+    <!-- Умовне відображення компонента AuthForm -->
+    <AuthForm v-if="showAuthForm" />
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
+import AuthForm from "@/components/AuthForm.vue";
 
 export default {
   name: "FirstPage",
   components: {
     Header,
+    AuthForm,
+  },
+  data() {
+    return {
+      showAuthForm: false,
+    };
+  },
+  methods: {
+    toggleAuthForm() {
+      this.showAuthForm = !this.showAuthForm;
+    },
   },
 };
 </script>
-
-<style scoped>
-
-</style>

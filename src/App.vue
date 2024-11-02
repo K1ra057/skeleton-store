@@ -1,23 +1,25 @@
+<!-- src/App.vue -->
 <template>
   <div id="app">
-    <FirstPage />
-    <GifBackground/>
+    <Header />
+    <router-view />
+    <GifBackground />
   </div>
 </template>
 
 <script>
-import FirstPage from "@/components/FirstPage.vue";
-import GifBackground from "./components/GifBackground.vue";
+import Header from "@/components/Header.vue";
+import GifBackground from "@/components/GifBackground.vue";
 
 export default {
   name: "App",
   components: {
-    FirstPage,
+    Header,
     GifBackground,
   },
 };
 </script>
 
 <style>
-
+/* Ваші додаткові стилі, якщо потрібно */
 </style>

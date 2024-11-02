@@ -1,27 +1,33 @@
+<!-- src/components/Header.vue -->
 <template>
-    <header class="overlay-header">
-      <div class="logo">
-        <img src="@/assets/logo.gif" alt="Logo" />
-      </div>
-      <div class="nav-container">
-        <nav class="nav-menu">
-          <a href="#">Home</a>
-          <a href="#">Shop</a>
-          <a href="#">Features</a>
-          <a href="#">Cart</a>
-        </nav>
-      </div>
-      <button class="login-button border border-white text-white px-4 py-1 rounded hover:bg-white hover:text-purple-800">
-        Login
-      </button>
-    </header>
-  </template>
-  
-  <script>
-  export default {
-    name: "Header",
-  };
-  </script>
+  <header class="overlay-header">
+    <div class="logo">
+      <img src="@/assets/logo.gif" alt="Logo" />
+    </div>
+    <div class="nav-container">
+      <nav class="nav-menu">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Features</a>
+        <a href="#">Cart</a>
+      </nav>
+    </div>
+    <button @click="navigateToLogin" class="login-button border border-white text-white px-4 py-1 rounded hover:bg-white hover:text-purple-800">
+      Login
+    </button>
+  </header>
+</template>
+
+<script>
+export default {
+  name: "Header",
+  methods: {
+    navigateToLogin() {
+      this.$router.push({ name: 'Login' });
+    },
+  },
+};
+</script>
   
   <style scoped>
   .overlay-header {
