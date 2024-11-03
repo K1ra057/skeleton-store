@@ -1,125 +1,104 @@
 <template>
-    <div class="relative">
-      <GifBackground />
-      <div
-        class="flex items-center justify-center min-h-screen relative z-10 transition-colors duration-500"
-        :class="{ 'bg-red-500': isSignUp }"
-      >
-        <div class="container mx-auto flex flex-col lg:flex-row">
-          <div
-            class="form-container flex flex-col justify-center items-center w-full lg:w-1/2 p-8 bg-white shadow-md rounded-lg transition-all duration-500"
-            v-show="!isSignUp"
-          >
-            <h1 class="text-2xl font-bold mb-6">Sign In</h1>
-            <form @submit.prevent="handleSignIn">
-              <input
-                type="email"
-                v-model="email"
-                placeholder="Email"
-                class="mb-4 w-full p-2 border border-gray-300 rounded"
-                required
-              />
-              <input
-                type="password"
-                v-model="password"
-                placeholder="Password"
-                class="mb-4 w-full p-2 border border-gray-300 rounded"
-                required
-              />
-              <button
-                type="submit"
-                class="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-              >
-                Sign In
-              </button>
-            </form>
-          </div>
-          <div
-            class="form-container flex flex-col justify-center items-center w-full lg:w-1/2 p-8 bg-white shadow-md rounded-lg transition-all duration-500"
-            v-show="isSignUp"
-          >
-            <h1 class="text-2xl font-bold mb-6">Sign Up</h1>
-            <form @submit.prevent="handleSignUp">
-              <input
-                type="text"
-                v-model="name"
-                placeholder="Name"
-                class="mb-4 w-full p-2 border border-gray-300 rounded"
-                required
-              />
-              <input
-                type="email"
-                v-model="email"
-                placeholder="Email"
-                class="mb-4 w-full p-2 border border-gray-300 rounded"
-                required
-              />
-              <input
-                type="password"
-                v-model="password"
-                placeholder="Password"
-                class="mb-4 w-full p-2 border border-gray-300 rounded"
-                required
-              />
-              <button
-                type="submit"
-                class="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-              >
-                Sign Up
-              </button>
-            </form>
-          </div>
-  
-          <div class="overlay-container flex flex-col justify-center items-center w-full lg:w-1/2 p-8">
-            <button
-              class="mt-4 bg-transparent text-blue-500 font-bold"
-              @click="toggleForm"
-            >
-              {{ isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up" }}
-            </button>
-            <div v-if="message" class="mt-4 text-green-600">{{ message }}</div>
-          </div>
+  <div class="auth-container">
+    <div class="auth-form">
+      <h2 class="text-2xl font-semibold text-center mb-4">{{ isLogin ? 'Вхід' : 'Реєстрація' }}</h2>
+      <form @submit.prevent="handleSubmit">
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            required
+            class="mt-1 p-2 border border-gray-300 rounded w-full"
+          />
         </div>
-      </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">Пароль</label>
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            required
+            class="mt-1 p-2 border border-gray-300 rounded w-full"
+          />
+        </div>
+        <div v-if="!isLogin" class="mb-4">
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Підтвердження пароля</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            v-model="confirmPassword"
+            required
+            class="mt-1 p-2 border border-gray-300 rounded w-full"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600"
+        >
+          {{ isLogin ? 'Увійти' : 'Зареєструватися' }}
+        </button>
+      </form>
+      <p class="mt-4 text-center text-sm">
+        <span @click="toggleForm" class="text-blue-500 cursor-pointer">
+          {{ isLogin ? 'Немає облікового запису? Зареєструватися' : 'Вже є обліковий запис? Увійти' }}
+        </span>
+      </p>
     </div>
-  </template>
-  
-  <script>
-  import GifBackground from './GifBackground.vue';
-  
-  export default {
-    name: 'AuthForm',
-    components: {
-      GifBackground,
+  </div>
+</template>
+
+<script>
+export default {
+  name: "AuthForm",
+  data() {
+    return {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      isLogin: true, // початковий стан: форма логіна
+    };
+  },
+  methods: {
+    handleSubmit() {
+      if (this.isLogin) {
+        // Логіка для входу
+        console.log("Логін:", this.email, this.password);
+      } else {
+        // Логіка для реєстрації
+        if (this.password === this.confirmPassword) {
+          console.log("Реєстрація:", this.email, this.password);
+        } else {
+          alert("Паролі не збігаються!");
+        }
+      }
     },
-    data() {
-      return {
-        isSignUp: false,
-        email: '',
-        password: '',
-        name: '',
-        message: '',
-      };
+    toggleForm() {
+      this.isLogin = !this.isLogin; // Переключаємо між формами логіна та реєстрації
+      this.email = "";
+      this.password = "";
+      this.confirmPassword = ""; // Очищаємо поля
     },
-    methods: {
-      toggleForm() {
-        this.isSignUp = !this.isSignUp;
-      },
-      handleSignIn() {
-        // Тут реалізуйте свою логіку входу
-        this.message = 'You have signed in successfully!';
-      },
-      handleSignUp() {
-        // Тут реалізуйте свою логіку реєстрації
-        this.message = 'You have signed up successfully!';
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .container {
-    max-width: 800px;
-  }
-  </style>
-  
+  },
+};
+</script>
+
+<style scoped>
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Це дозволить зайняти всю висоту екрану */
+  position: relative; /* Задайте позицію */
+  z-index: 10; /* Дайте вищий z-index для контейнера форми */
+}
+
+.auth-form {
+  background: white; /* Додайте фон для форми */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Залиште вищий z-index */
+}
+</style>

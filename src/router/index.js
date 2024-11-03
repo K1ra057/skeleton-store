@@ -1,6 +1,5 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import FirstPage from '@/components/FirstPage.vue';
+import FirstPage from '@/components/FirstPage.vue'; // Якщо у вас є перша сторінка
 import AuthForm from '@/components/AuthForm.vue';
 
 const routes = [
