@@ -1,83 +1,84 @@
 <template>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-  <div class="auth-wrapper">
-    <div class="container" id="container">
-      <div class="form-container sign-up-container">
-        <form action="#">
-          <h1>Create Account</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button>Sign Up</button>
-        </form>
-      </div>
-      <div class="form-container sign-in-container">
-        <form action="#">
-          <h1>Sign in</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <span>or use your account</span>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
-        </form>
-      </div>
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-            <p>To keep connected with us please login with your personal info</p>
-            <button class="ghost" id="signIn">Sign In</button>
-          </div>
-          <div class="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button class="ghost" id="signUp">Sign Up</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  mounted() {
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
-
-    signUpButton.addEventListener('click', () => {
-      container.classList.add("right-panel-active");
-    });
-
-    signInButton.addEventListener('click', () => {
-      container.classList.remove("right-panel-active");
-    });
-  }
-};
-</script>
-
-<style scoped>
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
-* {
+	<link
+	  rel="stylesheet"
+	  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+	/>
+  
+	<div class="auth-wrapper">
+		<div class="bg-white rounded-lg shadow-lg overflow-hidden w-[768px] max-w-full min-h-[480px] relative">
+			<div class="form-container sign-up-container">
+		  <form action="#">
+			<h1>Create Account</h1>
+			<div class="social-container">
+			  <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+			  <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+			  <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="text" placeholder="Name" />
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Sign Up</button>
+		  </form>
+		</div>
+		<div class="form-container sign-in-container">
+		  <form action="#">
+			<h1>Sign in</h1>
+			<div class="social-container">
+			  <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+			  <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+			  <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your account</span>
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<a href="#">Forgot your password?</a>
+			<button>Sign In</button>
+		  </form>
+		</div>
+		<div class="overlay-container">
+		  <div class="overlay">
+			<div class="overlay-panel overlay-left">
+			  <h1>Welcome Back!</h1>
+			  <p>To keep connected with us please login with your personal info</p>
+			  <button class="ghost" @click="togglePanel(false)">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+			  <h1>Hello, Friend!</h1>
+			  <p>Enter your personal details and start journey with us</p>
+			  <button class="ghost" @click="togglePanel(true)">Sign Up</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </template>
+  
+  <script>
+  export default {
+	data() {
+	  return {
+		isRightPanelActive: false // Стан панелі (вхід або реєстрація)
+	  };
+	},
+	methods: {
+	  togglePanel(isSignUp) {
+		// Зміна стану панелі залежно від вибору користувача
+		this.isRightPanelActive = isSignUp;
+	  }
+	}
+  };
+  </script>
+  
+  <style scoped>
+  /* Весь CSS залишається незмінним */
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+  
+  * {
 	box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
 	background: #f6f5f7;
 	display: flex;
 	justify-content: center;
@@ -86,47 +87,47 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
-}
-.auth-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 60px); /* Подстройка для учета высоты хедера */
-  padding-top: 60px; /* Отступ сверху, чтобы форма не перекрывала хедер */
-  box-sizing: border-box;
-}
-
-h1 {
+  }
+  .auth-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - 60px);
+	padding-top: 60px;
+	box-sizing: border-box;
+  }
+  
+  h1 {
 	font-weight: bold;
 	margin: 0;
-}
-
-h2 {
+  }
+  
+  h2 {
 	text-align: center;
-}
-
-p {
+  }
+  
+  p {
 	font-size: 14px;
 	font-weight: 100;
 	line-height: 20px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
-}
-
-span {
+  }
+  
+  span {
 	font-size: 12px;
-}
-
-a {
+  }
+  
+  a {
 	color: #333;
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
-}
-
-button {
+  }
+  
+  button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
+	border: 1px solid #4800ff;
 	background-color: #1570f0;
 	color: #FFFFFF;
 	font-size: 12px;
@@ -135,23 +136,23 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
-}
-
-button:active {
+  }
+  
+  button:active {
 	transform: scale(0.95);
-}
-
-button:focus {
+  }
+  
+  button:focus {
 	outline: none;
-}
-
-button.ghost {
+  }
+  
+  button.ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
-}
-
-form {
-	background-color: #FFFFFF;
+  }
+  
+  form {
+	background-color: #ffffff;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -159,72 +160,73 @@ form {
 	padding: 0 50px;
 	height: 100%;
 	text-align: center;
-}
-
-input {
+  }
+  
+  input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
-}
-
-.container {
+  }
+  
+  /* .container {
 	background-color: #fff;
 	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	position: relative;
 	overflow: hidden;
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
-}
-
-.form-container {
+  } */
+  
+  .form-container {
 	position: absolute;
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
-}
-
-.sign-in-container {
+  }
+  
+  .sign-in-container {
 	left: 0;
 	width: 50%;
 	z-index: 2;
-}
-
-.container.right-panel-active .sign-in-container {
+  }
+  
+  .container.right-panel-active .sign-in-container {
 	transform: translateX(100%);
-}
-
-.sign-up-container {
+  }
+  
+  .sign-up-container {
 	left: 0;
 	width: 50%;
 	opacity: 0;
 	z-index: 1;
-}
-
-.container.right-panel-active .sign-up-container {
+  }
+  
+  .container.right-panel-active .sign-up-container {
 	transform: translateX(100%);
 	opacity: 1;
 	z-index: 5;
 	animation: show 0.6s;
-}
-
-@keyframes show {
-	0%, 49.99% {
-		opacity: 0;
-		z-index: 1;
+  }
+  
+  @keyframes show {
+	0%,
+	49.99% {
+	  opacity: 0;
+	  z-index: 1;
 	}
-	
-	50%, 100% {
-		opacity: 1;
-		z-index: 5;
+  
+	50%,
+	100% {
+	  opacity: 1;
+	  z-index: 5;
 	}
-}
-
-.overlay-container {
+  }
+  
+  .overlay-container {
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -233,16 +235,16 @@ input {
 	overflow: hidden;
 	transition: transform 0.6s ease-in-out;
 	z-index: 100;
-}
-
-.container.right-panel-active .overlay-container{
+  }
+  
+  .container.right-panel-active .overlay-container {
 	transform: translateX(-100%);
-}
-
-.overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+  }
+  
+  .overlay {
+	background: #0989d9;
+	background: -webkit-linear-gradient(to right, #a952ff, #8000ff);
+	background: linear-gradient(to right, #a952ff, #8000ff);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -251,15 +253,15 @@ input {
 	left: -100%;
 	height: 100%;
 	width: 200%;
-  	transform: translateX(0);
+	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
-}
-
-.container.right-panel-active .overlay {
-  	transform: translateX(50%);
-}
-
-.overlay-panel {
+  }
+  
+  .container.right-panel-active .overlay {
+	transform: translateX(50%);
+  }
+  
+  .overlay-panel {
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -272,31 +274,31 @@ input {
 	width: 50%;
 	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
-}
-
-.overlay-left {
+  }
+  
+  .overlay-left {
 	transform: translateX(-20%);
-}
-
-.container.right-panel-active .overlay-left {
+  }
+  
+  .container.right-panel-active .overlay-left {
 	transform: translateX(0);
-}
-
-.overlay-right {
+  }
+  
+  .overlay-right {
 	right: 0;
 	transform: translateX(0);
-}
-
-.container.right-panel-active .overlay-right {
+  }
+  
+  .container.right-panel-active .overlay-right {
 	transform: translateX(20%);
-}
-
-.social-container {
+  }
+  
+  .social-container {
 	margin: 20px 0;
-}
-
-.social-container a {
-	border: 1px solid #DDDDDD;
+  }
+  
+  .social-container a {
+	border: 1px solid #0989d9;
 	border-radius: 50%;
 	display: inline-flex;
 	justify-content: center;
@@ -304,30 +306,6 @@ input {
 	margin: 0 5px;
 	height: 40px;
 	width: 40px;
-}
-
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
-}
-
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
-}
-</style>
+  }
+  </style>
+  
