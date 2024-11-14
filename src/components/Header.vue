@@ -1,4 +1,4 @@
-<!-- src/components/Header.vue -->
+<!-- Header.vue -->
 <template>
   <header class="overlay-header">
     <div class="logo">
@@ -6,10 +6,10 @@
     </div>
     <div class="nav-container">
       <nav class="nav-menu">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Features</a>
-        <a href="#">Cart</a>
+        <router-link to="/" exact>Home</router-link>
+        <router-link to="/shop">Shop</router-link>
+        <router-link to="/features">Features</router-link>
+        <router-link to="/cart">Cart</router-link>
       </nav>
     </div>
     <button @click="navigateToLogin" class="login-button border border-white text-white px-4 py-1 rounded hover:bg-white hover:text-purple-800">
